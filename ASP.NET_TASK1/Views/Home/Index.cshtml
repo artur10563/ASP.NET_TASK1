@@ -1,0 +1,33 @@
+﻿@using ASP.NET_TASK1.Models.DirModels
+@model (Dir parent, IEnumerable<DirRelation> children)
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<strong>@Model.parent.Name</strong>
+
+@if(Model.children.Any())
+{
+    <ul>
+        @foreach(DirRelation dr in Model.children)
+        {
+            <li>
+                <a href="@Url.Action("Index", "Home", new { idParent = dr.Id_Child })">@dr.Child.Name</a>
+            </li>
+        }
+    </ul>
+
+}
+else
+{
+    <p>Каталог порожній</p>
+}
+
+
+
+
+
+
+
+
